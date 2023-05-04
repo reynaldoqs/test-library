@@ -10,20 +10,20 @@ import * as packageJson from './package.json'
 // https://vitejs.dev/config/
 export default defineConfig((configEnv) => ({
   plugins: [
+    dts({
+      include: ['src/component/'],
+    }),
     react(),
     tsConfigPaths(),
     linterPlugin({
       include: ['./src}/**/*.{ts,tsx}'],
       linters: [new EsLinter({ configEnv })],
     }),
-    dts({
-      include: ['src/component/'],
-    }),
   ],
   build: {
     lib: {
-      entry: resolve('src', 'components/index.ts'),
-      name: 'HelloWord',
+      entry: resolve('src', 'component/index.ts'),
+      name: 'AudimanLib',
       formats: ['es', 'umd'],
       fileName: (format) => `react-vite-library.${format}.js`,
     },
